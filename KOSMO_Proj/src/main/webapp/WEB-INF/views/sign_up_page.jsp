@@ -4,10 +4,11 @@
 
 
 <script>
-	////////////////////////
-	// Email 선택 스크립트 시작 //
-	///////////////////////
 	$(function() {
+		
+		
+		
+		<%-- 이메일 선택 시작 --%>	
 		$('#select').change(function() {
 			$('#textEmail').val($('#select').val());
 			$('#textEmail').attr("disabled", true);
@@ -17,25 +18,63 @@
 				$('#textEmail').focus();
 			}
 		})
-		///////////////////////
-		// Email 선택 스크립트 끝 //
-		//////////////////////
+		<%-- 이메일 선택 끝 --%>
+		
+		
+		<%-- 비밀번호 유효성체크 시작 --%>
+		<%-- 2019.04.18 AM 11:10 --%>
+		<%-- 추가한 사람 : 마명재 		 --%>
+		//비밀번호를 숫자 영문자 특수문자 8자리 이상으로 조합하게하기
+		$("#pwd").change(function(){
+		    checkPassword($('#pwd').val());
+		});
+		function checkPassword(pwd){
+		    
+		    if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/.test(pwd)){            
+		        alert('숫자+영문자+특수문자 조합으로 8자리 이상 사용해야 합니다.');
+		        $('#pwd').val('').focus();
+		        return false;
+		    }    
+		    var checkNumber = password.search(/[0-9]/g);
+		    var checkEnglish = password.search(/[a-z]/ig);
+		    if(checkNumber <0 || checkEnglish <0){
+		        alert("숫자와 영문자를 혼용하여야 합니다.");
+		        $('#pwd').val('').focus();
+		        return false;
+		    }
+		    return true;
+		}
+		
+		//비밀번호 입력칸과 비밀번호 확인칸이 동일하지 않으면 다시 입력하게하기
+		$('#pwdsubmit').change(function(){
+			checkPwdSubmit($('#pwd').val(),$('#pwdsubmit').val());
+		})
+		
+		function checkPwdSubmit(pwd,pwdsubmit){
+			if(pwd != pwdsubmit){
+				alert('비밀번호와 동일하게 입력해야 합니다.');
+				$('#pwdsubmit').val('').focus();
+				return false;
+			}
+			
+			return true;
+		}
+		<%-- 비밀번호 유효성체크 끝 --%>
+		
 
-		////////////////////
-		// 제휴 선택 스크립트 시작 //
-		////////////////////
+		
+		<%-- 카풀 체크 시작 --%>
 		$('#dd1').hide();
-		$('#checkbox1').click(function() {//카풀 제휴서비스 추가입력다이브
+		$('#checkbox1').click(function() {
 			if ($(this).prop('checked')) {
 				$('#dd1').show();
 			} else {
 				$('#dd1').hide();
 			}
 		})
-		////////////////////
-		// 제휴 선택 스크립트 끝 //
-		////////////////////
+		<%-- 카풀 끝 시작 --%>
 
+		
 		////////////////////
 		// 휴대폰 번호 유효성체크 //
 		////////////////////
@@ -92,12 +131,11 @@
 								</p>
 								<div class="passInput">
 									<div class="input-area">
-										<input type="password" id="pwd" name="pwd"
-											placeholder="비밀번호를 입력해주세요.">
+										<input type="password" id="pwd" name="pwd" placeholder="비밀번호를 입력해주세요.">
+										
 									</div>
 									<div class="input-area">
-										<input type="password" id="intgMbPwConfirm"
-											placeholder="비밀번호를 확인을 입력해주세요.">
+										<input type="password" id="pwdsubmit" placeholder="비밀번호를 확인을 입력해주세요.">
 									</div>
 								</div>
 								<p class="rwTxt">
@@ -137,10 +175,11 @@
 									<option value="017">017</option>
 									<option value="019">019</option>
 									<option value="010">010</option>
-								</select> <span class="mailTxt">-</span> <input type="text" id="phone2"
-									name="phone2" maxlength="4" style="width: 65px" /> <span
-									class="mailTxt">-</span> <input type="text" id="phone3"
-									name="phone3" maxlength="4" style="width: 65px" />
+								</select> 
+								<span class="mailTxt">-</span> 
+								<input type="text" id="phone2" name="phone2" maxlength="4" style="width: 65px" /> 
+								<span class="mailTxt">-</span> 
+								<input type="text" id="phone3" name="phone3" maxlength="4" style="width: 65px" />
 							</div>
 							<p class="joinTit2">
 								선택정보 입력&nbsp;&nbsp;<small><small style="color: gray;">선택적으로
@@ -221,7 +260,7 @@
 								<div class="btnBox">
 									<a href="javascript:history.back()" class="grayBt"
 										style="padding-left: 10px">취소</a>
-									<Button type="submit">가입완료</Button>
+									<Button type="submit" style="margin-left : 10px; background-color : gray; width : 100px; height : 50px; padding : 10px 10px 10px 10px; text-align : center; ">가입완료</Button>
 								</div>
 							</div>
 						</div>
