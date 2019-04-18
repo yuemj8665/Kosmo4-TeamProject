@@ -21,16 +21,19 @@
 		<%-- 이메일 선택 끝 --%>
 		
 		
+		
+		<%-- 2019.04.18 AM 11:10 	--%>
+		<%-- 추가한 사람 : 마명재 		 	--%>
+		<%-- 휴대전화 유효성체크는 일단 보류	--%>
+		
 		<%-- 비밀번호 유효성체크 시작 --%>
-		<%-- 2019.04.18 AM 11:10 --%>
-		<%-- 추가한 사람 : 마명재 		 --%>
 		//비밀번호를 숫자 영문자 특수문자 8자리 이상으로 조합하게하기
 		$("#pwd").change(function(){
 		    checkPassword($('#pwd').val());
 		});
 		function checkPassword(pwd){
 		    
-		    if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/.test(pwd)){            
+		    if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/.test(pwd)){            
 		        alert('숫자+영문자+특수문자 조합으로 8자리 이상 사용해야 합니다.');
 		        $('#pwd').val('').focus();
 		        return false;
@@ -85,7 +88,7 @@
 
 		function CheckForm() {
 			if (document.getElementById("txtMobile1").value == "") {
-				window.alert("휴대폰 번호를 선택하시오.");
+				window.alert("휴대폰 번호를 선택하시오.");ㅈ
 				return false;
 			}
 			if (document.getElementById("txtMobile2").value.length != 4) {
@@ -127,7 +130,7 @@
 									<a href="#" class="confirmBt">중복확인</a>
 								</div>
 								<p class="rwTxt">
-									<span>*</span>8~16자의 영문, 숫자만 입력해주세요.
+									<span>*</span>8~16자의 영문과 숫자, 특수문자를 조합하여 입력해주세요.
 								</p>
 								<div class="passInput">
 									<div class="input-area">
